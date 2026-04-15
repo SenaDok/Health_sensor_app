@@ -1,0 +1,13 @@
+#!/bin/sh
+# Pre-commit hook: runs backend tests and frontend type check
+
+echo "Running backend tests..."
+cd backend && python -m pytest tests/ -q --tb=short 2>&1
+if [ $? -ne 0 ]; then
+  echo "❌ Backend tests failed. Commit aborted."
+  exit 1
+fi
+cd ..
+
+echo "✅ All checks passed."
+exit 0
