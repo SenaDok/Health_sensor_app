@@ -22,7 +22,7 @@ export async function fetchObservations({ limit = 50, code } = {}) {
 }
 
 export function createWebSocket(onMessage, onClose) {
-  const wsBase = import.meta.env.VITE_WS_URL || `ws://${location.host}`
+  const wsBase = import.meta.env.VITE_WS_URL || `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}`
   const ws = new WebSocket(`${wsBase}/ws`)
   ws.onmessage = (e) => {
     try { onMessage(JSON.parse(e.data)) } catch {}
