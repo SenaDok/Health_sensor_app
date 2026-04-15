@@ -27,7 +27,7 @@ jobs:
       - name: Run tests
         run: |
           cd backend
-          pytest tests/ -v --cov=app --cov-report=term-missing
+          PYTHONPATH=. pytest tests/ -v --cov=app --cov-report=term-missing
 
   lint-frontend:
     runs-on: ubuntu-latest
